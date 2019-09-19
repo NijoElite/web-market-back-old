@@ -1,13 +1,36 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const mongoose = require('mongoose');
+const moment = require('moment');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const app = express();
 
-var app = express();
+// config
+const mongodb_uri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/market-db';
+
+// Connect to DB
+mongoose.set('debug', true);
+
+mongoose.connect(mongodb_uri, {useNewUrlParser: true})
+    .then(() => {
+      console.log(moment().format() +
+      ' [mongoose] connection established to '
+      + mongodb_uri);
+    })
+    .catch((err) => {
+      console.error(moment().format() +
+      ' [mongoose] connection error '
+      + err);
+      process.exit(1);
+    });
+
+// Models
+require('./models/Order');
+require('./models/User');
+require('./models/Product');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -19,8 +42,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+// Routes
+app.use(require('./routes'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
