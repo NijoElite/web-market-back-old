@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const uniquireValidator = require('mongoose-unique-validator');
 
 const orderSchema = new mongoose.Schema({
   customer: {
@@ -21,6 +20,8 @@ const orderSchema = new mongoose.Schema({
     type: mongoose.SchemaTypes.ObjectId,
     ref: 'User',
   }],
+
+  isPaid: Boolean,
 }, {timestamps: true});
 
 

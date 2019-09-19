@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const uniquireValidator = require('mongoose-unique-validator');
 
 const productSchema = new mongoose.Schema({
     article: {
@@ -26,7 +26,9 @@ const productSchema = new mongoose.Schema({
 
     imageLink: {
         type: String,
-        match: [/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/, 'is invalid'], // TODO: update regex to use relative path
+        match: [
+            /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
+            'is invalid'], // TODO: update regex to use relative path
     },
 
     votes: [{
@@ -41,7 +43,7 @@ const productSchema = new mongoose.Schema({
 
     rating: Number,
 
-    genres: [[String]],
+    genres: [String],
 });
 
 productSchema.plugin(uniquireValidator, {message: 'is already taken'});

@@ -1,16 +1,8 @@
 const mongoose = require('mongoose');
-const uniquireValidator = require('mongoose-unique-validator');
+const uniqueValidator = require('mongoose-unique-validator');
 const crypto = require('crypto');
 
 const userSchema = new mongoose.Schema({
-  username: {
-    type: String,
-    lowercase: true,
-    unique: true,
-    required: [true, 'can\'t be blank'],
-    match: [/^[a-zA-Z0-9]+$/, 'is invalid'],
-  },
-
   email: {
     type: String,
     lowercase: true,
@@ -31,7 +23,7 @@ const userSchema = new mongoose.Schema({
   },
 
   secondName: {
-      type: Date,
+      type: String,
       required: [true, 'can\'t be blank'],
   },
 
@@ -47,18 +39,14 @@ const userSchema = new mongoose.Schema({
     select: false,
   },
   
+  role: {
+    type: Array,  
+    default: ['user'], // also admin, customer
+  },
+
   birthday: {
     type: Date,
-    required: [true, 'can\t be blank'],
-  },
-
-  role: {
-    type: String,
-    default: 'user', // also admin, customer
-  },
-
-  orders: {
-
+    required: [true, 'can\'t be blank'],
   },
 
   salt: {
@@ -66,9 +54,13 @@ const userSchema = new mongoose.Schema({
     select: false,
   },
 
+  bonus: Number,
+
+  history: String, // string? 
+
 }, {timestamps: true});
 
-userSchema.plugin(uniquireValidator, {message: 'is already taken'});
+userSchema.plugin(uniqueValidator, {message: 'is already taken'});
 
 userSchema.methods.validatePassword = function(pass) {
   const hash = crypto.pbkdf2Sync(pass, this.salt, 10000, 512, 'sha512').
