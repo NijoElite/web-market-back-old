@@ -3,3 +3,13 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+
+  form(method='POST', action='')
+    input#email(type="text", name="email", placeholder="email")
+    input#password(type="password", name="password", placeholder="Пароль")
+    input#name(type="text", name="name", placeholder="Имя")
+    input#second-name(type="text", name="second-name", placeholder="Отчество")
+    input#last-name(type="text", name="last-name", placeholder="Фамилия")
+    input#date(type="date", name="birthday", placeholder="Дата рождения")
+    button(type="submit")
+      | Подтвердить
