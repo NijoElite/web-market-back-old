@@ -36,7 +36,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, 'can\'t be blank'],
     minlength: [8, 'length must be at least 8'],
-    select: false,
+    // select: false,
   },
   
   role: {
@@ -51,7 +51,7 @@ const userSchema = new mongoose.Schema({
 
   salt: {
     type: String,
-    select: false,
+    // select: false,
   },
 
   bonus: Number,
