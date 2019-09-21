@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const router = new express.Router();
 
 // Add user to locals
 router.use('/', (req, res, next) => {
@@ -9,7 +9,7 @@ router.use('/', (req, res, next) => {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', {title: 'Express'});
 });
 
 // API

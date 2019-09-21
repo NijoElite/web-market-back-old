@@ -3,7 +3,8 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-
+  - if (user)
+    = user.email
   form(method='POST', action='/api/reg')
     input#email(type="text", name="email", placeholder="email")
     input#password(type="password", name="password", placeholder="Пароль")

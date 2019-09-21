@@ -1,7 +1,7 @@
 const express = require('express');
-const router = express.Router();
+const router = new express.Router();
 
-router.use('/reg', require('./registration')); 
+router.use('/reg', require('./registration'));
 router.use('/auth', require('./auth'));
 
 // Errors

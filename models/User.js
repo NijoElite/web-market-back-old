@@ -13,23 +13,23 @@ const userSchema = new mongoose.Schema({
   },
 
   firstName: {
-      type: String,
-      required: [true, 'can\'t be blank'],
+    type: String,
+    required: [true, 'can\'t be blank'],
   },
 
   lastName: {
-      type: String,
-      required: [true, 'can\'t be blank'],
+    type: String,
+    required: [true, 'can\'t be blank'],
   },
 
   secondName: {
-      type: String,
-      required: [true, 'can\'t be blank'],
+    type: String,
+    required: [true, 'can\'t be blank'],
   },
 
   phone: {
-      type: String,
-      match: [/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/, 'is invalid'],
+    type: String,
+    match: [/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/, 'is invalid'],
   },
 
   password: {
@@ -38,9 +38,9 @@ const userSchema = new mongoose.Schema({
     minlength: [8, 'length must be at least 8'],
     // select: false,
   },
-  
+
   role: {
-    type: Array,  
+    type: Array,
     default: ['user'], // also admin, customer
   },
 
@@ -56,7 +56,7 @@ const userSchema = new mongoose.Schema({
 
   bonus: Number,
 
-  history: String, // string? 
+  history: String, // string?
 
 }, {timestamps: true});
 

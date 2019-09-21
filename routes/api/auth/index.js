@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const router = new express.Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
@@ -19,20 +19,19 @@ passport.use(new LocalStrategy(
     async function(email, password, done) {
       try {
         const user = await User.findOne({email});
-        
+
         if (!user) {
           return done(null, false);
         }
-  
+
         if (user.validatePassword(password)) {
           return done(null, user);
         }
-        
+
         return done(null, false);
-      }
-      catch (err) {
+      } catch (err) {
         return done(err);
-      }     
+      }
     }
 ));
 
@@ -42,7 +41,7 @@ router.post('/login', passport.authenticate('local', {
   failureRedirect: '/login',
 }));
 
-// TODO: use json instead of redirect 
+// TODO: use json instead of redirect
 router.get('/logout', (req, res, next) => {
   req.logout();
   res.redirect('/');

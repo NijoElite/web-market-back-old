@@ -11,21 +11,21 @@ const passport = require('passport');
 const app = express();
 
 // config
-const mongodb_uri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/market-db';
+const mongodbUri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/market-db';
 
 // Connect to DB
 mongoose.set('debug', true);
 
-mongoose.connect(mongodb_uri, {useNewUrlParser: true})
+mongoose.connect(mongodbUri, {useNewUrlParser: true})
     .then(() => {
       console.log(moment().format() +
-      ' [mongoose] connection established to '
-      + mongodb_uri);
+      ' [mongoose] connection established to ' +
+      mongodbUri);
     })
     .catch((err) => {
       console.error(moment().format() +
-      ' [mongoose] connection error '
-      + err);
+      ' [mongoose] connection error ' +
+      err);
       process.exit(1);
     });
 
@@ -42,7 +42,7 @@ app.set('view engine', 'pug');
 app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 
 app.use(session({
