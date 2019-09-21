@@ -15,25 +15,26 @@ passport.deserializeUser(function(email, done) {
       then((user) => done(null, user)).catch((err) => done(err));
 });
 
-// TODO: use await
 passport.use(new LocalStrategy(
-    function(email, password, done) {
-      User.findOne({email: email}).then((user) => {
+    async function(email, password, done) {
+      try {
+        const user = await User.findOne({email});
+        
         if (!user) {
           return done(null, false);
         }
-        console.log(user);
-        const isValid = user.validatePassword(password);
-        if (isValid) {
+  
+        if (user.validatePassword(password)) {
           return done(null, user);
-        } else {
-          return done(null, false);
         }
-
-      }).catch((err) => done(err));
+        
+        return done(null, false);
+      }
+      catch (err) {
+        return done(err);
+      }     
     }
 ));
-
 
 // TODO: add custom callback
 router.post('/login', passport.authenticate('local', {
