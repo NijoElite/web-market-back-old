@@ -13,9 +13,7 @@ router.post('/', async function(req, res, next) {
         isAuthorized = user.validatePassword(req.body.password);
     }
 
-    console.log('ggggggggg: ' + isAuthorized);
-
-    res.send(isAuthorized);
+    res.json({isAuthorized, user});
 }); 
 
 module.exports = router;
