@@ -12,11 +12,11 @@ block content
     input#last-name(type="text", name="last-name", placeholder="Фамилия")
     input#date(type="date", name="birthday", placeholder="Дата рождения")
     button(type="submit")
-      | Подтвердить
+      | Зарегистрироваться
 
   div
-    form(method='POST', action='/api/auth')
-      input#email(type="text", name="email", placeholder="email")
+    form(action="/api/auth/login", method="POST")
+      input#email(type="text", name="username", placeholder="email")
       input#password(type="password", name="password", placeholder="Пароль")
       button(type="submit")
-        | Подтвердить
+        | Войти

@@ -5,6 +5,8 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
 const moment = require('moment');
+const session = require('express-session');
+const passport = require('passport');
 
 const app = express();
 
@@ -36,11 +38,20 @@ require('./models/Product');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+// Middlewares
 app.use(logger('dev'));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(session({
+  secret: '123',
+  resave: false,
+  saveUninitialized: false, // TODO: change secret
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Routes
 app.use(require('./routes'));
