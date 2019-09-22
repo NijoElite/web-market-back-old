@@ -36,10 +36,28 @@ passport.use(new LocalStrategy(
 ));
 
 // TODO: add custom callback
-router.post('/login', passport.authenticate('local', {
-  successRedirect: '/users',
-  failureRedirect: '/login',
-}));
+router.post('/login', function(req, res, next) {
+  passport.authenticate('local', function(err, user, info) {
+    if (err) {
+      return next(err);
+    }
+
+    if (!user) {
+      return res.json({error: {
+        message: 'Invalid email or password',
+      }});
+    }
+
+    req.logIn(user, function(err) {
+      if (err) {
+        return next(err);
+      }
+      return res.json({data: {
+        email: user.email,
+      }});
+    });
+  })(req, res, next);
+});
 
 // TODO: use json instead of redirect
 router.get('/logout', (req, res, next) => {
