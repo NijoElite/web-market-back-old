@@ -62,7 +62,7 @@ router.post('/login', function(req, res, next) {
 // TODO: use json instead of redirect
 router.get('/logout', (req, res, next) => {
   req.logout();
-  res.redirect('/');
+  res.json({});
 });
 
 
