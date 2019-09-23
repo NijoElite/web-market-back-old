@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 const User = mongoose.model('User');
 
-router.post('/', function(req, res, next) {
+router.post('/', async function(req, res, next) {
   const body = req.body;
 
   const user = new User({
@@ -16,7 +16,16 @@ router.post('/', function(req, res, next) {
     birthday: Date.parse(body['birthday']),
   });
 
-  user.save();
+  try {
+    const savedUser = await user.save();
+    res.json({
+      data: {
+        email: savedUser.email,
+      },
+    });
+  } catch (err) {
+    next(err);
+  }
 });
 
 module.exports = router;
