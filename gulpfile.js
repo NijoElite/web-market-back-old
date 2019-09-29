@@ -1,5 +1,6 @@
 const gulp = require('gulp');
 const sass = require('gulp-sass');
+const concat = require('gulp-concat');
 
 const paths = {
   src: {
@@ -20,9 +21,16 @@ gulp.task('sass', function() {
       pipe(gulp.dest(paths.out.css));
 });
 
-gulp.task('build', gulp.series(['sass']));
+
+gulp.task('js', function() {
+  return gulp.src(paths.src.js).
+      pipe(concat('main.js')).
+      pipe(gulp.dest(paths.out.js));
+});
+
+gulp.task('build', gulp.series(['sass', 'js']));
 
 gulp.task('watch', function() {
-  gulp.watch([paths.src.sass],
+  gulp.watch([paths.src.sass, paths.src.js],
       gulp.series('build'));
 });
