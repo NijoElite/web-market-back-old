@@ -1,0 +1,16 @@
+header.header.container__fluid
+    .header-search.container
+        .header-links.header-search__links.row
+            a.header-links__item(href='/cart') Мои покупки
+            if (!user)
+                a#login-link.header-links__item(href='/') Войти
+                a#reg-link.header-links__item(href='/') Регистрация
+            else    
+                a#logout-link.header-links__item(href='/api/auth/logout') Выйти
+    
+        form.header-search__form(action='', method='get')
+            input#query(type="search", name="query", placeholder="Поиск игр...").header-search__input
+            input(type="submit", value="GO").header-search__submit
+
+    nav.nav
+        .nav__inner.container

@@ -5,15 +5,6 @@ block content
   p Welcome to #{title}
   - if (user)
     = user.email
-  form(method='POST', action='/api/reg')
-    input#email(type="text", name="email", placeholder="email")
-    input#password(type="password", name="password", placeholder="Пароль")
-    input#name(type="text", name="first-name", placeholder="Имя")
-    input#second-name(type="text", name="second-name", placeholder="Отчество")
-    input#last-name(type="text", name="last-name", placeholder="Фамилия")
-    input#date(type="date", name="birthday", placeholder="Дата рождения")
-    button(type="submit")
-      | Зарегистрироваться
 
   div
     form(action="/api/auth/login", method="POST")

@@ -1,0 +1,13 @@
+form#reg-form(method='POST', action='/api/reg').modal-form
+    .modal-form__inner
+        .modal-form__form 
+            #reg-close.modal-form__close-row
+                i.fas.fa-times.modal-form__close-button
+            .modal-form__caption Регистрация
+            input#email(type="text", name="email", placeholder="Email").modal-form__input
+            input#password(type="password", name="password", placeholder="Пароль").modal-form__input
+            input#name(type="text", name="first-name", placeholder="Имя").modal-form__input
+            input#second-name(type="text", name="second-name", placeholder="Отчество").modal-form__input
+            input#last-name(type="text", name="last-name", placeholder="Фамилия").modal-form__input
+            input#date(type="date", name="birthday", placeholder="Дата рождения").modal-form__input
+            button#reg-submit(type="submit").modal-form__input.modal-form__button.button Зарегистрироваться
