@@ -11,7 +11,8 @@ $('#reg-link').click(function(e) {
   regForm.addClass('active');
 });
 
-$('#reg-submit', function(e) {
+$('#reg-submit').click(function(e) {
+  e.preventDefault();
   $.ajax({
     url: '/api/reg',
     data: $(regForm).serialize(),
@@ -30,6 +31,17 @@ const loginForm = $('#login-form');
 
 $('#login-close').click(function() {
   loginForm.removeClass('active');
+});
+
+$('#login-submit').click(function(e) {
+  e.preventDefault();
+  $.ajax({
+    url: '/api/auth/login',
+    data: $(loginForm).serialize(),
+    type: 'POST',
+  }).done((e) =>{
+    console.log(e);
+  });
 });
 
 $('#login-link').click(function(e) {
