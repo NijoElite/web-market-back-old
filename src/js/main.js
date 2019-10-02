@@ -1,3 +1,5 @@
+// ================
+// REG FORM START
 const regForm = $('#reg-form');
 
 $('#reg-close').click(function() {
@@ -18,7 +20,12 @@ $('#reg-submit', function(e) {
     console.log(e);
   });
 });
+// REG FORM END
+// ================
 
+
+// ================
+// LOGIN FORM START
 const loginForm = $('#login-form');
 
 $('#login-close').click(function() {
@@ -29,3 +36,5 @@ $('#login-link').click(function(e) {
   e.preventDefault();
   loginForm.addClass('active');
 });
+// LOGIN FORM END
+// ================
