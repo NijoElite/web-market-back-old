@@ -18,7 +18,10 @@ $('#reg-submit').click(function(e) {
     data: $(regForm).serialize(),
     type: 'POST',
   }).done((e) =>{
-    console.log(e);
+    alert('Ваш аккаунт зарегистрирован\n' +
+        'Письмо с подтверждением отправлено на почту ' + e.data.email);
+  }).fail((e) => {
+    alert('Проверьте введенные поля');
   });
 });
 // REG FORM END
@@ -40,7 +43,9 @@ $('#login-submit').click(function(e) {
     data: $(loginForm).serialize(),
     type: 'POST',
   }).done((e) =>{
-    console.log(e);
+    location.reload();
+  }).fail((e) => {
+    alert('Неправильная комбинация логин/пароль');
   });
 });
 
