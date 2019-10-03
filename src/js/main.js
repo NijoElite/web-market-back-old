@@ -55,3 +55,18 @@ $('#login-link').click(function(e) {
 });
 // LOGIN FORM END
 // ================
+
+// ================
+// LOGOUT START
+$('#logout-link').click(function(e) {
+  e.preventDefault();
+  $.ajax({
+    url: 'api/auth/logout',
+    type: 'GET',
+  }).done( () => {
+    location.reload();
+  }
+  );
+});
+// LOGOUT END
+// ================
