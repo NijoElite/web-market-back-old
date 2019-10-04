@@ -7,11 +7,13 @@ const paths = {
     js: 'src/js/**/*.js',
     sass: 'src/sass/**/*.*',
     img: 'src/img/**/*.*',
+    fonts: 'src/fonts/**/*.*',
   },
   out: {
     css: 'public/css',
     js: 'public/js',
     img: 'public/img',
+    fonts: 'public/fonts',
   },
 };
 
@@ -28,9 +30,14 @@ gulp.task('js', function() {
       pipe(gulp.dest(paths.out.js));
 });
 
-gulp.task('build', gulp.series(['sass', 'js']));
+gulp.task('fonts', function() {
+  return gulp.src(paths.src.fonts).
+      pipe(gulp.dest(paths.out.fonts));
+});
+
+gulp.task('build', gulp.series(['sass', 'js', 'fonts']));
 
 gulp.task('watch', function() {
-  gulp.watch([paths.src.sass, paths.src.js],
+  gulp.watch([paths.src.sass, paths.src.js, paths.src.fonts],
       gulp.series('build'));
 });

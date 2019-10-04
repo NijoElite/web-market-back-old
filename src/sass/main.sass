@@ -1,5 +1,8 @@
+@import './_vars.sass'
+@import './_fonts.sass'
+  
 .header
-    margin-top: 15px
+  margin-top: 15px
 
 .header-links
     display: flex
@@ -34,7 +37,7 @@
 
 .button
     background: none
-    border: 1px solid #ffc608
+    border: 1px solid $orange-color
     border-radius: 5px
     padding: 5px 0
     cursor: pointer
@@ -90,3 +93,88 @@
 
     &.active
         display: flex
+
+.nav
+  background: #f1f1f1
+  margin-top: 15px
+
+  &__inner
+    display: flex
+    justify-content: center
+
+.category-item
+  width: 12.5%
+  color: #000000
+  text-align: center
+  font-size: 39px
+  transition: all 0.15s ease
+  padding: 15px 0
+
+  &:hover
+    background: $orange-color
+    text-decoration: none
+    color: #000000
+
+  &__text
+    font-size: 10px 
+    position: relative
+    text-transform: uppercase
+
+
+  &__image
+    position: relative
+    line-height: 60px
+    width: 100%
+
+  &__icon-action
+    font-size: 25px
+
+.iconic 
+
+  &--cat-action
+    &:before
+      font-family: 'iconic'
+      display: block
+      content: '\E002'
+
+  &--cat-adventure
+    &:before
+      font-family: 'iconic'
+      display: block
+      content: '\E003'
+
+  &--cat-arcade
+    &:before
+      font-family: 'iconic'
+      display: block
+      content: '\E004'
+
+  &--cat-strategy
+    &:before
+      font-family: 'iconic'
+      display: block
+      content: '\E009'
+
+  &--cat-sport
+    &:before
+      font-family: 'iconic'
+      display: block
+      content: '\E008'
+
+  &--cat-rpg
+    &:before
+      font-family: 'iconic'
+      display: block
+      content: '\E006'
+
+  &--cat-sim
+    &:before
+      font-family: 'iconic'
+      display: block
+      content: '\E007'
+
+  &--cat-mmo
+    &:before
+      font-family: 'iconic'
+      display: block
+      content: '\E005'
