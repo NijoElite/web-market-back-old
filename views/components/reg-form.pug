@@ -1,8 +1,8 @@
 form#reg-form(method='POST', action='/api/reg').modal-form
     .modal-form__inner
         .modal-form__form 
-            #reg-close.modal-form__close-row
-                i.fas.fa-times.modal-form__close-button
+            .modal-form__close-row
+                #reg-close.i.fas.fa-times.modal-form__close-button
             .modal-form__caption Регистрация
             input(type="text", name="email", placeholder="Email").modal-form__input
             input(type="password", name="password", placeholder="Пароль").modal-form__input
