@@ -1,0 +1,46 @@
+.modal-form
+    position: absolute
+    width: 100vw
+    height: 100vh
+    justify-content: center
+    background: rgba(0,0,0,0.7)
+    z-index: 1000
+    display: none
+
+    &__close-row
+        display: flex
+        justify-content: flex-end
+    
+    &__close-button
+        font-size: 18px
+        color: #ffc608
+        cursor: pointer
+
+    &__button
+        margin-top: 15px
+
+
+    &__caption
+        font-size: 24px
+        font-weight: bold
+        text-align: center
+        margin-bottom: 14px
+
+    &__form
+        background: #fff
+        padding: 22px
+        border-radius: 10px
+
+    &__inner
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+
+    &__input
+        display: block
+        width: 500px
+        margin-bottom: 10px
+
+    &.active
+        display: flex
