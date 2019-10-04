@@ -1,14 +1,15 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-  - if (user)
-    = user.email
+  .container
+    .catalog-menu
+      .catalog-menu__button Новинки
+      .catalog-menu__button.catalog-menu__button--active Лидеры продаж
+      .catalog-menu__button Популярное
 
-  div
-    form(action="/api/auth/login", method="POST")
-      input#email(type="text", name="username", placeholder="email")
-      input#password(type="password", name="password", placeholder="Пароль")
-      button(type="submit")
-        | Войти
+    .catalog.catalog--active
+        a.catalog-item(href="#")
+          img.catalog-item__img(src="https://cdn.gabestore.ru/product/370x460_BYn56qjn2QQrnQOzWH94b4qDo6FwTtJx.jpg", alt="")
+          .catalog-item__hover
+          .catalog-item__text Grid Ultimate Edition 
+          .catalog-item__price= 650 + ' ₽'
