@@ -1,6 +1,5 @@
 const gulp = require('gulp');
 const sass = require('gulp-sass');
-const concat = require('gulp-concat');
 
 const paths = {
   src: {
@@ -8,12 +7,14 @@ const paths = {
     sass: 'src/sass/**/*.*',
     img: 'src/img/**/*.*',
     fonts: 'src/fonts/**/*.*',
+    images: 'src/images/**/*.*',
   },
   out: {
     css: 'public/css',
     js: 'public/js',
     img: 'public/img',
     fonts: 'public/fonts',
+    images: 'public/images',
   },
 };
 
@@ -26,8 +27,12 @@ gulp.task('sass', function() {
 
 gulp.task('js', function() {
   return gulp.src(paths.src.js).
-      pipe(concat('main.js')).
       pipe(gulp.dest(paths.out.js));
+});
+
+gulp.task('images', function() {
+  return gulp.src(paths.src.images).
+      pipe(gulp.dest(paths.out.images));
 });
 
 gulp.task('fonts', function() {
@@ -35,9 +40,13 @@ gulp.task('fonts', function() {
       pipe(gulp.dest(paths.out.fonts));
 });
 
-gulp.task('build', gulp.series(['sass', 'js', 'fonts']));
+gulp.task('build', gulp.series(['sass', 'js', 'fonts', 'images']));
 
 gulp.task('watch', function() {
-  gulp.watch([paths.src.sass, paths.src.js, paths.src.fonts],
-      gulp.series('build'));
+  gulp.series('build')();
+
+  gulp.watch(paths.src.sass, gulp.series('sass'));
+  gulp.watch(paths.src.js, gulp.series('js'));
+  gulp.watch(paths.src.fonts, gulp.series('fonts'));
+  gulp.watch(paths.src.fonts, gulp.series('images'));
 });

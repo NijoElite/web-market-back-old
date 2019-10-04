@@ -50,3 +50,17 @@ $('#login-link').click(function(e) {
 });
 // LOGIN FORM END
 // ================
+
+// ================
+// OWL CAROUSEL START
+$('.owl-carousel').owlCarousel({
+  loop: true,
+  nav: false,
+  responsive: {
+    0: {
+      items: 1,
+    },
+  },
+});
+// OWL CAROUSEL END
+// ================
