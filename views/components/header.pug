@@ -1,0 +1,49 @@
+header.header.container__fluid
+    .header-search.container
+        .header-links.header-search__links
+            a.header-links__item(href='/cart') Мои покупки
+            if (!user)
+                a#login-link.header-links__item(href='/') Войти
+                a#reg-link.header-links__item(href='/') Регистрация
+            else    
+                a#user-link.header-links__item(href='/cabinet') Личный кабинет
+                a#logout-link.header-links__item(href='/api/auth/logout') Выйти
+    
+        form.header-search__form(action='', method='get')
+            input#query(type="search", name="query", placeholder="Поиск игр...").header-search__input
+            input(type="submit", value="GO").header-search__submit
+
+    nav.nav
+        .nav__inner.container
+          a.nav__category-item.category-item(href='#')
+            .category-item__image
+              span.iconic--cat-action.category-item__icon-action
+            .category-item__text Экшн
+          a.nav__category-item.category-item(href='#')
+            .category-item__image
+              span.iconic--cat-adventure
+            .category-item__text Приключение
+          a.nav__category-item.category-item(href='#')
+            .category-item__image
+              span.iconic--cat-rpg              
+            .category-item__text Ролевые
+          a.nav__category-item.category-item(href='#')
+            .category-item__image
+              span.iconic--cat-sim
+            .category-item__text Симуляторы
+          a.nav__category-item.category-item(href='#')
+            .category-item__image
+              span.iconic--cat-strategy
+            .category-item__text Стратегии
+          a.nav__category-item.category-item(href='#')
+            .category-item__image
+              span.iconic--cat-mmo
+            .category-item__text MMO
+          a.nav__category-item.category-item(href='#')
+            .category-item__image
+              span.iconic--cat-arcade
+            .category-item__text Аркады
+          a.nav__category-item.category-item(href='#')
+            .category-item__image
+              span.iconic--cat-sport
+            .category-item__text Спорт

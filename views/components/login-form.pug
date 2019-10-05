@@ -1,0 +1,9 @@
+form#login-form(method='POST', action='/api/auth').modal-form
+    .modal-form__inner
+        .modal-form__form 
+            .modal-form__close-row
+                #login-close.i.fas.fa-times.modal-form__close-button
+            .modal-form__caption Войти
+            input(type="text", name="username", placeholder="Email").modal-form__input
+            input(type="password", name="password", placeholder="Пароль").modal-form__input
+            button#login-submit(type="submit").modal-form__input.modal-form__button.button Войти

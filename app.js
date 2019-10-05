@@ -5,25 +5,27 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
 const moment = require('moment');
+const session = require('express-session');
+const passport = require('passport');
 
 const app = express();
 
 // config
-const mongodb_uri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/market-db';
+const mongodbUri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/market-db';
 
 // Connect to DB
 mongoose.set('debug', true);
 
-mongoose.connect(mongodb_uri, {useNewUrlParser: true})
+mongoose.connect(mongodbUri, {useNewUrlParser: true})
     .then(() => {
       console.log(moment().format() +
-      ' [mongoose] connection established to '
-      + mongodb_uri);
+      ' [mongoose] connection established to ' +
+      mongodbUri);
     })
     .catch((err) => {
       console.error(moment().format() +
-      ' [mongoose] connection error '
-      + err);
+      ' [mongoose] connection error ' +
+      err);
       process.exit(1);
     });
 
@@ -36,11 +38,20 @@ require('./models/Product');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+// Middlewares
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
+app.use(cookieParser());
+
+app.use(session({
+  secret: '123',
+  resave: false,
+  saveUninitialized: false, // TODO: change secret
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Routes
 app.use(require('./routes'));
@@ -58,7 +69,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render('pages/error');
 });
 
 module.exports = app;

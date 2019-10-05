@@ -1,12 +1,16 @@
 const express = require('express');
-const router = express.Router();
+const router = new express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+// Add user to locals
+router.use('/', (req, res, next) => {
+  res.locals.user = req.user;
+  next();
 });
 
 // API
 router.use('/api', require('./api'));
+
+router.use('/', require('./endpoints'));
+
 
 module.exports = router;
