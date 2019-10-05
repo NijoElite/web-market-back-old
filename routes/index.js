@@ -7,12 +7,10 @@ router.use('/', (req, res, next) => {
   next();
 });
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', {title: 'Express'});
-});
-
 // API
 router.use('/api', require('./api'));
+
+router.use('/', require('./endpoints'));
+
 
 module.exports = router;
