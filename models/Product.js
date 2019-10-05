@@ -20,16 +20,18 @@ const productSchema = new mongoose.Schema({
     required: [true, 'can\t be blank'],
   },
 
+  requirements: [{
+    option: String,
+    value: String,
+  }],
+
   publisher: String,
 
   releaseDate: Date,
 
-  imageLink: {
-    type: String,
-    match: [
-      /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
-      'is invalid'], // TODO: update regex to use relative path
-  },
+  sliderImage: String,
+
+  defaultImage: String,
 
   votes: [{
     user: {
