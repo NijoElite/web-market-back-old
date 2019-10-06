@@ -1,5 +1,24 @@
-.page
+body
+  min-height: 100vh
   background: $light-grey 
+  
+.page
+  padding-top: 40px
+
+  &__header
+    font-size: 34px
+    font-weight: bold
 
 .page-block
   background: #fff
+  padding: 20px
+  margin: 20px 0
+  min-height: 350px
+
+  &--no-pad
+    padding: 0
+
+.currency
+
+  &--rub:after
+    content: ' ₽'

@@ -84,3 +84,76 @@ $('#logout-link').click(function(e) {
 });
 // LOGOUT END
 // ================
+
+// ================
+// CART START
+const addToCart = (article) => {
+  const stringCart = window.localStorage.getItem('cart');
+  const cart = stringCart ? JSON.parse(stringCart) : {};
+
+  if (cart[article]) {
+    cart[article]++;
+  } else {
+    cart[article] = 1;
+  }
+
+  window.localStorage.setItem('cart', JSON.stringify(cart));
+};
+
+const removeFromCart = (article) => {
+  const stringCart = window.localStorage.getItem('cart');
+  const cart = stringCart ? JSON.parse(stringCart) : {};
+
+  if (cart[article]) {
+    cart[article] = Math.max(0, cart[article] - 1);
+  }
+
+  if (cart[article] === 0) {
+    delete cart[article];
+  }
+
+  window.localStorage.setItem('cart', JSON.stringify(cart));
+};
+
+const updateCartItems = () => {
+  $.ajax({
+    url: 'ajax/cart',
+    type: 'POST',
+    data: JSON.parse(window.localStorage.getItem('cart')),
+  }).done((data) => {
+    $('#cart').html(data);
+    $('.cart-list-item__action-btn--add').click(function(e) {
+      addToCart(this.dataset.article);
+      updateCartItems();
+    });
+
+    $('.cart-list-item__action-btn--remove').click(function(e) {
+      removeFromCart(this.dataset.article);
+      updateCartItems();
+    });
+  });
+};
+
+$('#add-product-btn').click(function(e) {
+  if (this.dataset.ordered) {
+    return;
+  }
+  addToCart(this.dataset.article);
+
+  this.dataset.ordered = true;
+
+  $(this).text('Перейти в корзину');
+  $(this).addClass('ordered');
+  $(this).click(() => window.location='/cart');
+});
+
+// if it is cart page ajax request for items
+if ($('#cart').length !== 0) {
+  updateCartItems();
+}
+
+// CART END
+// ================
+
+
+// ================

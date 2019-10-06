@@ -7,5 +7,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.use('/catalog', require('./catalog'));
+router.use('/cart', require('./cart'));
 
 module.exports = router;
