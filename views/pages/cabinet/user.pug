@@ -1,0 +1,28 @@
+extends ../../layout
+
+
+block content
+   .user-page.page__inner.container
+        .page-block
+            .page__header Информация о пользователе
+            form.user-page__info-list(action='#', method='POST')
+                .user-page__info
+                    .user-page__info-key Email
+                    .user-page__info-value=user.email
+                .user-page__info
+                    .user-page__info-key Имя
+                    input.user-page__info-value(name='firstName', type='text', value=user.firstName)
+                .user-page__info
+                    .user-page__info-key Отчество
+                    input.user-page__info-value(name='secondName', type='text', value=user.secondName)
+                .user-page__info
+                    .user-page__info-key Фамилия
+                    input.user-page__info-value(name='lastName', type='text', value=user.lastName)
+        .page-block
+            .page__header Смена пароля
+            form.user-page__password(action='#', method='POST')
+                .user-page__info
+                    .user-page__info-key Новый пароль
+                    input.user-page__info-value(name='password', type='password')
+
+                

@@ -14,5 +14,6 @@ router.get('/', async function(req, res, next) {
 
 router.use('/catalog', require('./catalog'));
 router.use('/cart', require('./cart'));
+router.use('/cabinet', require('./cabinet'));
 
 module.exports = router;

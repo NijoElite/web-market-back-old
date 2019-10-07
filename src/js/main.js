@@ -78,7 +78,7 @@ $('.owl-carousel').owlCarousel({
 $('#logout-link').click(function(e) {
   e.preventDefault();
   $.ajax({
-    url: 'api/auth/logout',
+    url: '/api/auth/logout',
     type: 'GET',
   }).done( () => {
     location.reload();
