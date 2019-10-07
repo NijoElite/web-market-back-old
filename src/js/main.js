@@ -100,7 +100,7 @@ const addToCart = (article) => {
   window.localStorage.setItem('cart', JSON.stringify(cart));
 };
 
-const removeFromCart = (article) => {
+const removeFromCart = (article, deleteAll) => {
   const stringCart = window.localStorage.getItem('cart');
   const cart = stringCart ? JSON.parse(stringCart) : {};
 
@@ -108,7 +108,7 @@ const removeFromCart = (article) => {
     cart[article] = Math.max(0, cart[article] - 1);
   }
 
-  if (cart[article] === 0) {
+  if (cart[article] === 0 || deleteAll) {
     delete cart[article];
   }
 
@@ -129,6 +129,11 @@ const updateCartItems = () => {
 
     $('.cart-list-item__action-btn--remove').click(function(e) {
       removeFromCart(this.dataset.article);
+      updateCartItems();
+    });
+
+    $('.cart-list-item__action-btn--delete').click(function(e) {
+      removeFromCart(this.dataset.article, true);
       updateCartItems();
     });
   });
