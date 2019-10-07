@@ -61,6 +61,9 @@ $('#login-link').click(function(e) {
 $('.owl-carousel').owlCarousel({
   loop: true,
   nav: false,
+  mouseDrag: false,
+  autoplay: true,
+  autoplayTimeout: 5000,
   responsive: {
     0: {
       items: 1,
