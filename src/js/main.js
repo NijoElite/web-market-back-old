@@ -1,13 +1,50 @@
+// #region FORM
+const closeAllModalForms = () => {
+  $('.modal-form').removeClass('modal-form--active');
+};
+
+const closeForm = (formId) => {
+  $('#' + formId).removeClass('modal-form--active');
+};
+
+$('.modal-form__input-field').focus(function(e) {
+  $(this).parent().addClass('modal-form__input--focus');
+});
+
+$('.modal-form__input-field').blur(function(e) {
+  if (!$(this).val()) {
+    $(this).parent().removeClass('modal-form__input--focus');
+  }
+});
+
+$('.modal-form__close-button').click(function(e) {
+  const formId = $(this).attr('data-form');
+  closeForm(formId);
+});
+
+$('.modal-form').click(function(e) {
+  const target = $(e.target);
+
+  if (target.is('form')) {
+    closeForm(target.attr('id'));
+  }
+});
+
+$('.modal-form__input-field').each(function(index) {
+  if ($(this).val()) {
+    $(this).parent().addClass('modal-form__input--focus');
+  }
+});
+// #endregion
+
+
 // #region REG FORM
 const regForm = $('#reg-form');
 
-$('#reg-close').click(function() {
-  regForm.removeClass('active');
-});
-
 $('#reg-link').click(function(e) {
   e.preventDefault();
-  regForm.addClass('active');
+  closeAllModalForms();
+  regForm.addClass('modal-form--active');
 });
 
 $('#reg-submit').click(function(e) {
@@ -21,6 +58,7 @@ $('#reg-submit').click(function(e) {
         'Письмо с подтверждением отправлено на почту ' + e.data.email);
   }).fail((e) => {
     alert('Проверьте введенные поля');
+    console.log(e);
   });
 });
 // #endregion
@@ -28,10 +66,6 @@ $('#reg-submit').click(function(e) {
 
 // #region LOGIN FORM
 const loginForm = $('#login-form');
-
-$('#login-close').click(function() {
-  loginForm.removeClass('active');
-});
 
 $('#login-submit').click(function(e) {
   e.preventDefault();
@@ -48,7 +82,8 @@ $('#login-submit').click(function(e) {
 
 $('#login-link').click(function(e) {
   e.preventDefault();
-  loginForm.addClass('active');
+  closeAllModalForms();
+  loginForm.addClass('modal-form--active');
 });
 // #endregion
 

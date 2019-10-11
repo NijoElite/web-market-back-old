@@ -1,15 +1,17 @@
-form#login-form(method='POST', action='/api/auth', style='display: flex').modal-form
-    .modal-form__inner
-        .modal-form__form 
-            .modal-form__close-row
-                #login-close.i.fas.fa-times.modal-form__close-button
-            .modal-form__caption Войти
-            label(for="login-email") Введите email
-            .modal-form__input
-              input#login-email(type="text", name="username", placeholder="Email").modal-form__input-field
-            
-            label(for="login-email") Введите пароль
-            .modal-form__input
-              input#login-password(type="password", name="password", placeholder="Пароль").modal-form__input-field
+form#login-form(method='POST', action='/api/auth').modal-form
+  .modal-form__form 
+      .modal-form__close-row
+          #login-close.i.fas.fa-times.modal-form__close-button(data-form='login-form')
+      .modal-form__caption Войти
+      .modal-form__input
+        i.fas.fa-user.modal-form__input-icon
+        input(type="text", name="username").modal-form__input-field
+        span(data-placeholder="Email").modal-form__placeholder Email
+      
+      .modal-form__input
+        i.fas.fa-key.modal-form__input-icon
+        input(type="password", name="password").modal-form__input-field
+        span(data-placeholder="Email").modal-form__placeholder Пароль
 
-            button#login-submit(type="submit").modal-form__input-field.modal-form__button.button Войти
+
+      button#login-submit(type="submit").modal-form__button.button Войти
