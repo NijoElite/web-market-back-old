@@ -1,5 +1,4 @@
-// ================
-// REG FORM START
+// #region REG FORM
 const regForm = $('#reg-form');
 
 $('#reg-close').click(function() {
@@ -24,12 +23,10 @@ $('#reg-submit').click(function(e) {
     alert('Проверьте введенные поля');
   });
 });
-// REG FORM END
-// ================
+// #endregion
 
 
-// ================
-// LOGIN FORM START
+// #region LOGIN FORM
 const loginForm = $('#login-form');
 
 $('#login-close').click(function() {
@@ -53,11 +50,10 @@ $('#login-link').click(function(e) {
   e.preventDefault();
   loginForm.addClass('active');
 });
-// LOGIN FORM END
-// ================
+// #endregion
 
-// ================
-// OWL CAROUSEL START
+
+// #region OWL CAROUSEL
 $('.owl-carousel').owlCarousel({
   loop: true,
   nav: false,
@@ -70,11 +66,10 @@ $('.owl-carousel').owlCarousel({
     },
   },
 });
-// OWL CAROUSEL END
-// ================
+// #endregion
 
-// ================
-// LOGOUT START
+
+// #region LOGOUT
 $('#logout-link').click(function(e) {
   e.preventDefault();
   $.ajax({
@@ -85,11 +80,10 @@ $('#logout-link').click(function(e) {
   }
   );
 });
-// LOGOUT END
-// ================
+// #endregion
 
-// ================
-// CART START
+
+// #region CART
 const addToCart = (article) => {
   const stringCart = window.localStorage.getItem('cart');
   const cart = stringCart ? JSON.parse(stringCart) : {};
@@ -159,9 +153,4 @@ $('#add-product-btn').click(function(e) {
 if ($('#cart').length !== 0) {
   updateCartItems();
 }
-
-// CART END
-// ================
-
-
-// ================
+// #endregion
