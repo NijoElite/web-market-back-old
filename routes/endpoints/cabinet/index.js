@@ -4,12 +4,14 @@ const router = new express.Router();
 const auth = require('../../../middlewares/auth');
 const roles = require('../../../middlewares/roles');
 
+router.use('/', auth.required);
+
 router.use('/user',
-    auth.required, roles.isUser,
+    roles.isUser,
     require('./user'));
 
 router.use('/customer',
-    auth.required, roles.isCustomer,
+    roles.isCustomer,
     require('./customer'));
 
 module.exports = router;
