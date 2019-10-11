@@ -1,9 +1,15 @@
-form#login-form(method='POST', action='/api/auth').modal-form
+form#login-form(method='POST', action='/api/auth', style='display: flex').modal-form
     .modal-form__inner
         .modal-form__form 
             .modal-form__close-row
                 #login-close.i.fas.fa-times.modal-form__close-button
             .modal-form__caption Войти
-            input(type="text", name="username", placeholder="Email").modal-form__input
-            input(type="password", name="password", placeholder="Пароль").modal-form__input
-            button#login-submit(type="submit").modal-form__input.modal-form__button.button Войти
+            label(for="login-email") Введите email
+            .modal-form__input
+              input#login-email(type="text", name="username", placeholder="Email").modal-form__input-field
+            
+            label(for="login-email") Введите пароль
+            .modal-form__input
+              input#login-password(type="password", name="password", placeholder="Пароль").modal-form__input-field
+
+            button#login-submit(type="submit").modal-form__input-field.modal-form__button.button Войти
