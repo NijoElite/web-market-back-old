@@ -1,22 +1,21 @@
 .user-page
+  &__info-list
+    margin-top: 25px
 
-    &__info-list
-        margin-top: 25px
+  &__info
+    display: flex
+    margin-bottom: 5px
 
-    &__info
-        display: flex
-        margin-bottom: 5px
+  &__info-key
+    font-weight: bold
+    color: darken($dark-grey, 10%)
+    width: 30%
+    &:after
+      content: ':'
 
-    &__info-key
-        font-weight: bold
-        color: darken($dark-grey, 10%)
-        width: 30%
-        &:after
-            content: ':'
-
-    &__info-value
-        border: 1px solid darken($dark-grey, 10%)
-        width: 300px
-        border-radius: 3px
-        padding: 5px
+  &__info-value
+    border: 1px solid darken($dark-grey, 10%)
+    width: 300px
+    border-radius: 3px
+    padding: 5px
         
