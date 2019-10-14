@@ -1,6 +1,7 @@
 -const isNotEmpty = games.length === 0
 -const totalCost = games.reduce((acc, game) => acc + game.price * game.count, 0)
 -const totalCount = games.reduce((acc, game) => acc + +game.count, 0);
+-const bonus = Math.trunc(totalCost * 0.1);
 
 .cart-list.row
   .col-md-8.col-12
@@ -33,8 +34,10 @@
           .cart-order__header Итог
           .currency.currency--rub=totalCost
         .cart-order__row.cart-order__row--light
-          .cart-order__header Товары
-          .cart-order__products-count=totalCount+', шт.'
+          .cart-order__header Товары, шт
+          .cart-order__text=totalCount
+        .cart-order__row.cart-order__row--light
+          .cart-order__header='Начислено бонусов'
+          .cart-order__text=bonus
       .cart-order__bottom
         .cart-order__button.button Оформить заказ
-      
