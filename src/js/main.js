@@ -119,73 +119,46 @@ $('#logout-link').click(function(e) {
 
 
 // #region CART
-const addToCart = (article) => {
-  const stringCart = window.localStorage.getItem('cart');
-  const cart = stringCart ? JSON.parse(stringCart) : {};
+const onAddCartClick = (button) => {
+  const promise = new Promise(function(resolve, reject) {
+    if (button.dataset.ordered) {
+      return window.location='/cart';
+    }
 
-  if (cart[article]) {
-    cart[article]++;
-  } else {
-    cart[article] = 1;
-  }
+    $.ajax({
+      url: '/api/cart/add',
+      type: 'POST',
+      data: {article: button.dataset.article},
+    }).done((data) => {
+      if (button.dataset.orderedText) {
+        button.dataset.ordered = true;
+        $(button).text(button.dataset.orderedText);
+      }
 
-  window.localStorage.setItem('cart', JSON.stringify(cart));
-};
-
-const removeFromCart = (article, deleteAll) => {
-  const stringCart = window.localStorage.getItem('cart');
-  const cart = stringCart ? JSON.parse(stringCart) : {};
-
-  if (cart[article]) {
-    cart[article] = Math.max(0, cart[article] - 1);
-  }
-
-  if (cart[article] === 0 || deleteAll) {
-    delete cart[article];
-  }
-
-  window.localStorage.setItem('cart', JSON.stringify(cart));
-};
-
-const updateCartItems = () => {
-  $.ajax({
-    url: 'ajax/cart',
-    type: 'POST',
-    data: JSON.parse(window.localStorage.getItem('cart')),
-  }).done((data) => {
-    $('#cart').html(data);
-    $('.cart-list-item__action-btn--add').click(function(e) {
-      addToCart(this.dataset.article);
-      updateCartItems();
-    });
-
-    $('.cart-list-item__action-btn--remove').click(function(e) {
-      removeFromCart(this.dataset.article);
-      updateCartItems();
-    });
-
-    $('.cart-list-item__action-btn--delete').click(function(e) {
-      removeFromCart(this.dataset.article, true);
-      updateCartItems();
+      resolve(data);
+    }).fail((err) => {
+      reject(err);
     });
   });
+
+  return promise;
 };
 
-$('#add-product-btn').click(function(e) {
-  if (this.dataset.ordered) {
-    return;
-  }
-  addToCart(this.dataset.article);
+const onRemoveCartClick = (button) => {
+  const promise = new Promise(function(resolve, reject) {
+    $.ajax({
+      url: '/api/cart/remove',
+      type: 'POST',
+      data: {article: button.dataset.article, count: button.dataset.count},
+    }).done((data) => {
+      resolve(data);
+    }).fail((err) => {
+      reject(err);
+    });
+  });
 
-  this.dataset.ordered = true;
+  return promise;
+};
 
-  $(this).text('Перейти в корзину');
-  $(this).addClass('ordered');
-  $(this).click(() => window.location='/cart');
-});
 
-// if it is cart page ajax request for items
-if ($('#cart').length !== 0) {
-  updateCartItems();
-}
 // #endregion

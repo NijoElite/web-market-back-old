@@ -29,7 +29,7 @@ block content
 
           .product-page__buy-section
             .currency.currency--rub.product-page__price=product.price
-            .product-page__buy-button.button#add-product-btn(data-article=product.article) В корзину
+            .product-page__buy-button.button(onclick='onAddCartClick(this)', data-ordered-text='Перейти в корзину', data-article=product.article, data-ordered=false) В корзину
   
         .product-page__page-block.page-block
           .product-page__block-header Описание

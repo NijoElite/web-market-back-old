@@ -3,6 +3,7 @@ const router = new express.Router();
 
 router.use('/reg', require('./registration'));
 router.use('/auth', require('./auth'));
+router.use('/cart', require('./cart'));
 
 // Errors
 router.use(function(err, req, res, next) {
