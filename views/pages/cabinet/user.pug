@@ -1,36 +1,34 @@
-extends ../../layout
+extends ./layout
 
-
-block content
+block page
   if (message)
     =message.text
-  .user-page.page__inner.container
-    .row
-      .col-lg-6.col-12
-        form.page-block.user-page__block.user-page__info-list.user-page__form(action='#', method='POST')
-          .page__header Пользователь
-          .user-page__info
-            .user-page__info-key Email
-            .user-page__info-value=user.email
-          .user-page__info
-            .user-page__info-key Имя
-            input.user-page__info-value(name='firstName', type='text', value=user.firstName)
-          .user-page__info
-            .user-page__info-key Отчество
-            input.user-page__info-value(name='secondName', type='text', value=user.secondName)
-          .user-page__info
-            .user-page__info-key Фамилия
-            input.user-page__info-value(name='lastName', type='text', value=user.lastName)
-          input(type="submit", value="Сохранить изменения").user-page__button.button 
+  .row
+    .col-lg-6.col-12
+      form.page-block.user-page__block.user-page__info-list.user-page__form(action='#', method='POST')
+        .page__header Информация
+        .user-page__info
+          .user-page__info-key Email
+          .user-page__info-value=user.email
+        .user-page__info
+          .user-page__info-key Имя
+          input.user-page__info-value(name='firstName', type='text', value=user.firstName)
+        .user-page__info
+          .user-page__info-key Отчество
+          input.user-page__info-value(name='secondName', type='text', value=user.secondName)
+        .user-page__info
+          .user-page__info-key Фамилия
+          input.user-page__info-value(name='lastName', type='text', value=user.lastName)
+        input(type="submit", value="Сохранить изменения").user-page__button.button 
 
-      .col-lg-6.col-12
-        form.page-block.user-page__block.user-page__change-password.user-page__form(action='/cabinet/user/password', method='POST')
-          .page__header Смена пароля
-          .user-page__info
-            .user-page__info-key Новый пароль
-            input.user-page__info-value(name='password', type='password')
-          input(type="submit", value="Изменить пароль").user-page__button.button 
+    .col-lg-6.col-12
+      form.page-block.user-page__block.user-page__change-password.user-page__form(action='/cabinet/user/password', method='POST')
+        .page__header Смена пароля
+        .user-page__info
+          .user-page__info-key Новый пароль
+          input.user-page__info-value(name='password', type='password')
+        input(type="submit", value="Изменить пароль").user-page__button.button 
 
-      .col-12
-        form.page-block.user-page__block.user-page__orders.user-page__form(action='#', method='POST')
-          .page__header История заказов
+    .col-12
+      form.page-block.user-page__block.user-page__orders.user-page__form(action='#', method='POST')
+        .page__header История заказов
