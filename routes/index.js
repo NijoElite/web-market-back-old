@@ -9,7 +9,6 @@ router.use('/', (req, res, next) => {
 
 // API
 router.use('/api', require('./api'));
-router.use('/ajax', require('./ajax'));
 
 router.use('/', require('./endpoints'));
 
