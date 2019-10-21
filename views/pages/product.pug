@@ -1,16 +1,14 @@
 extends ../layout
 
-
-
 block content
   -const genreMap = {    action: 'iconic--cat-action',    adventure: 'iconic--cat-adventure',    arcade: 'iconic--cat-arcade',   mmo: 'iconic--cat-mmo',    rpg: 'iconic--cat-rpg',    sim: 'iconic--cat-sim',    sport: 'iconic--cat-sport',    strategy: 'iconic--cat-strategy',    default: 'iconic--arr-full-l',  }
 
-  .product-page.container
-    .product-page__header Купить #{product.name}
+  .product-page.page__inner.container
+    .page__header Купить #{product.name}
     
     .row
       .product-page__left-sidebar.col-12.col-md-4
-        .product-page__page-block.product-page__page-block--no-pad.page-block
+        .product-page__page-block.page-block--no-pad.page-block
           .product-page__game-logo
             img.product-page__game-image(src="/images/"+product.defaultImage, alt="")
           .product-page__genres-list
@@ -30,12 +28,12 @@ block content
                 .product-page__requirements-value=req.value  
 
           .product-page__buy-section
-            .product-page__price=product.price + ' ₽'
-            .product-page__buy-button.button#add-product-btn Купить
+            .currency.currency--rub.product-page__price=product.price
+            .product-page__buy-button.button(onclick='onAddCartClick(this)', data-ordered-text='Перейти в корзину', data-article=product.article, data-ordered=false) В корзину
   
         .product-page__page-block.page-block
           .product-page__block-header Описание
             p.product-page__description=product.description
-
+//- TODO: add categories' link
               
             

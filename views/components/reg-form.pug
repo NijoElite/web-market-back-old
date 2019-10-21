@@ -1,13 +1,38 @@
 form#reg-form(method='POST', action='/api/reg').modal-form
-    .modal-form__inner
-        .modal-form__form 
-            .modal-form__close-row
-                #reg-close.i.fas.fa-times.modal-form__close-button
-            .modal-form__caption Регистрация
-            input(type="text", name="email", placeholder="Email").modal-form__input
-            input(type="password", name="password", placeholder="Пароль").modal-form__input
-            input(type="text", name="first-name", placeholder="Имя").modal-form__input
-            input(type="text", name="second-name", placeholder="Отчество").modal-form__input
-            input(type="text", name="last-name", placeholder="Фамилия").modal-form__input
-            input(type="date", name="birthday", placeholder="Дата рождения").modal-form__input
-            button#reg-submit(type="submit").modal-form__input.modal-form__button.button Зарегистрироваться
+  .modal-form__form 
+      .modal-form__close-row
+          #reg-close.i.fas.fa-times.modal-form__close-button(data-form='reg-form')
+      .modal-form__caption Регистрация
+
+      .modal-form__input
+        i.fas.fa-envelope.modal-form__input-icon
+        input(type="text", name="email").modal-form__input-field
+        span(data-placeholder="Email").modal-form__placeholder Email
+
+
+      .modal-form__input            
+        i.fas.fa-key.modal-form__input-icon
+        input(type="password", name="password").modal-form__input-field
+        span(data-placeholder="Email").modal-form__placeholder Пароль
+
+      .modal-form__input
+        i.fas.fa-user.modal-form__input-icon
+        input(type="text", name="first-name").modal-form__input-field
+        span(data-placeholder="Email").modal-form__placeholder Имя
+
+      .modal-form__input
+        i.fas.fa-user.modal-form__input-icon
+        input(type="text", name="second-name").modal-form__input-field
+        span(data-placeholder="Email").modal-form__placeholder Фамилия
+
+      .modal-form__input
+        i.fas.fa-user.modal-form__input-icon
+        input(type="text", name="last-name").modal-form__input-field
+        span(data-placeholder="Email").modal-form__placeholder Отчество
+
+      .modal-form__input
+        i.fas.fa-calendar-day.modal-form__input-icon
+        input(type="text", name="birthday", data-type='date').modal-form__input-field
+        span(data-placeholder="Email").modal-form__placeholder Дата рождения (дд.мм.гггг)
+
+      button#reg-submit(type="submit").modal-form__button.button Зарегистрироваться

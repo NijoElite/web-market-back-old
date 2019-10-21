@@ -26,7 +26,6 @@
     &:hover
       background: $dark-grey
 
-
   &__game-logo
     width: 100%
 
@@ -55,27 +54,34 @@
     align-items: center
     border-top: 1px solid $dark-grey
     display: flex
+
+    @include media-sm
+      flex-direction: column
+      align-items: flex-start
   
   &__buy-button
     margin-left: 40px
     padding: 5px 30px
     background: $orange-color
     font-weight: bold
+    text-align: center
+    min-width: 220px
+    max-width: 220px
+
+    @include media-sm
+      margin: 15px 0 0 0
 
     &:hover
       background: darken($orange-color, 5%)
       color: #fff
 
+    &[data-ordered='true']
+      background: #481173
+      color: #fff
+
   &__price 
     font-size: 36px
     font-weight: bold
-
-  &__page-block
-    padding: 20px
-    margin: 20px 0
-
-    &--no-pad
-      padding: 0
 
   &__description
     font-size: 16px

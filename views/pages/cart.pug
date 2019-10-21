@@ -1,0 +1,45 @@
+extends ../layout
+
+block content
+  -const isNotEmpty = games.length === 0
+  -const totalCost = games.reduce((acc, game) => acc + game.price * game.count, 0)
+  -const totalCount = games.reduce((acc, game) => acc + +game.count, 0);
+
+  .cart-page.page__inner.container
+    .page__header Мой заказ
+    .cart#cart
+      .cart-list.row
+        .col-md-8.col-12
+          .page-block
+            if isNotEmpty
+              .page__header В вашей корзине пока ничего нет
+            each game in games
+              .cart-list-item
+                .cart-list-item__left
+                  a(href='/catalog/' + game.article).cart-list-item__img
+                    img(src='/images/' + game.defaultImage, alt='')
+                  .cart-list-item__description
+                    a(href='/catalog/' + game.article).cart-list-item__name=game.name
+                    .cart-list-item__genres
+                      each genre in game.genres
+                        .cart-list-item__genre=genre
+                    .cart-list-item__date=moment(game.releaseDate).format('YYYY')
+                .cart-list-item__right
+                  .cart-list-item__buttons
+                    .cart-list-item__action-btn--remove.cart-list-item__action-btn.cart-list-item__action-btn(data-article=game.article, onclick='onRemoveCartClick(this).then(() => location.reload())')
+                    .cart-list-item__count(data-article=game.article)=game.count
+                    .cart-list-item__action-btn--add.cart-list-item__action-btn(data-article=game.article, onclick='onAddCartClick(this).then(() => location.reload())')
+                  .currency.currency--rub.cart-list-item__price(data-article=game.article, data-price=game.price)=game.price*game.count
+                  .cart-list-item__action-btn.cart-list-item__action-btn--delete(data-article=game.article, data-count='all', onclick='onRemoveCartClick(this).then(() => location.reload())')
+
+        .col-md-4.col-12
+          .page-block.cart-order
+            .cart-order__top
+              .cart-order__row
+                .cart-order__header Итог
+                .currency.currency--rub=totalCost
+              .cart-order__row.cart-order__row--light
+                .cart-order__header Товары
+                .cart-order__products-count=totalCount+', шт.'
+            .cart-order__bottom
+              .cart-order__button.button Оформить заказ

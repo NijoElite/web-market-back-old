@@ -1,5 +1,6 @@
 .header
-  margin-top: 15px
+  padding-top: 15px
+  background: #ffffff
 
 .header-links
     display: flex
@@ -10,27 +11,27 @@
       margin-left: 40px
 
 .header-search
-    position: relative
-    line-height: 40px
+  position: relative
+  line-height: 40px
+  width: 100%
+
+  &__form
+    display: flex
+    align-items: center
+
+  &__input
     width: 100%
+    border: 2px solid #ffc608
+    border-radius: 5px
+    padding: 5px 15px
+    outline: none
 
-    &__form
-        display: flex
-        align-items: center
-
-    &__input
-        width: 100%
-        border: 2px solid #ffc608
-        border-radius: 5px
-        padding: 5px 15px
-        outline: none
-
-    &__submit
-        width: 40px
-        right: 20px
-        border: none
-        position: absolute
-        background: none
+  &__submit
+    width: 40px
+    right: 20px
+    border: none
+    position: absolute
+    background: none
 
 .nav
   background: $dark-grey

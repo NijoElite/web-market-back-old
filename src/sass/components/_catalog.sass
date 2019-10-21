@@ -9,11 +9,17 @@
     display: flex
 
 .catalog-item
-  $root: &;
+  $root: &
   width: 19%  
   position: relative
   margin-bottom: 25px
   cursor: pointer
+  
+  @include media-md
+    width: 31%
+
+  @include media-sm
+    width: 48%
 
   &:hover
     #{$root}__price
@@ -76,6 +82,7 @@
     cursor: pointer
     border: 1px solid transparent
     transition: all 0.1s linear 
+    text-align: center
 
     &:hover
       border-color: #cfcfcf

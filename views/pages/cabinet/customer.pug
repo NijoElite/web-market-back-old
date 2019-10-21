@@ -1,0 +1,28 @@
+extends ./layout
+
+block page
+  .row
+    .col-12
+      .page-block.customer
+        .page__header Ваши товары
+        if (products.length === 0)
+          p У вас нет добавленных товаров
+          a.button--small.button(href='/cabinet/customer/product') Добавить
+
+        else 
+          table.products-table
+            tr.products-table__header.products-table__row
+              th.products-table__cell Название
+              th.products-table__cell Цена
+              th.products-table__cell Рейтинг
+              td.products-table__cell.products-table__edit
+                a.products-table__button.button--small.button(href='/cabinet/customer/product') Добавить
+
+            for product in products
+              tr.products-table__row
+                td.products-table__cell
+                  a(href='/catalog/'+product.article)=product.name
+                td.products-table__cell=product.price
+                td.products-table__cell=product.rating || 'Н/Д'
+                td.products-table__cell.products-table__edit
+                  a.products-table__button.button--small.button(href='/cabinet/customer/edit?'+product.article) Редактировать

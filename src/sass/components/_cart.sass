@@ -1,0 +1,146 @@
+@mixin line
+  content: ''
+  width: 12px
+  height: 1px
+  background: #000
+  display: block
+  left: calc(50% - 6px)
+  position: absolute
+  top: 50%
+
+.cart-list-item
+  display: flex
+  align-items: flex-start
+  flex-wrap: wrap
+  margin-bottom: 30px
+  padding-bottom: 10px
+  border-bottom: 1px solid $light-grey
+  position: relative
+
+  &__left
+    width: 50%
+    display: flex
+
+    @include media-md
+      width: 100%
+
+  &__right
+    display: flex
+    justify-content: flex-end
+    align-items: center
+    width: 50%
+
+    @include media-md
+      width: 100%
+  
+  &__img
+    width: 25%
+
+    img
+      width: 100%  
+
+  &__description
+    margin-left: 15px
+
+  &__genres
+    display: flex
+
+  &__genre
+    font-size: 14px
+    font-style: italic
+    padding: 10px
+    cursor: pointer
+    border-radius: 15px
+
+    &:hover
+      background: $light-grey
+
+  &__name
+    font-size: 24px
+    color: #000000
+    font-weight: bold
+    
+    &:hover
+      color: #000000
+      text-decoration: none
+
+  &__buttons
+    margin-right: 25px
+    height: 40px
+    display: flex
+    align-items: center
+
+  &__date
+    font-style: italic
+    font-size: 12px
+    color: #bfbfbf
+    margin-top: 10px
+    margin-left: 10px
+
+  &__action-btn
+    width: 40px
+    height: 40px
+    border: 1px solid $dark-grey
+    border-radius: 100%
+    position: relative
+    cursor: pointer
+    transition: all 0.1s linear
+
+    &:hover
+      background: $light-grey
+
+    &--delete
+      width: 27px
+      height: 27px
+
+      &:after
+        @include line
+        transform: rotate(-45deg)
+
+      &:before
+        @include line
+        transform: rotate(45deg)
+
+    &--remove
+      &:after
+        @include line
+
+    &--add
+      &:before
+        @include line
+        transform: rotate(-90deg)
+
+      &:after
+        @include line
+
+  &__count
+    width: 32px
+    text-align: center
+    font-weight: bold
+
+  &__price
+    margin: 0 15px
+    line-height: 40px
+    min-width: 60px
+    text-align: right
+    
+
+.cart-order
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+
+  &__row
+    font-weight: bold
+    font-size: 32px
+    display: flex
+    justify-content: space-between
+    margin-bottom: 17px
+
+    &--light
+      font-size: 14px
+      margin-bottom: 7px
+
+  &__button
+    width: 100%
+    margin-top: 50px
