@@ -5,9 +5,9 @@ block content
         if (user.role.length > 1)
             .user-page__nav
                 if (user.role.includes('user')) 
-                    a.user-page__nav-item(href="user") Пользователь
+                    a.user-page__nav-item(href="/cabinet/user") Пользователь
                 if (user.role.includes('customer'))                 
-                    a.user-page__nav-item(href="customer") Продавец
+                    a.user-page__nav-item(href="/cabinet/customer") Продавец
                 if (user.role.includes('admin')) 
-                    a.user-page__nav-item(href="admin") Администратор
+                    a.user-page__nav-item(href="/cabinet/admin") Администратор
         block page

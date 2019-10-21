@@ -8,6 +8,9 @@
     width: 30%
     display: flex
     align-items: center
+
+    &--top
+      align-items: flex-start
   
     &:after
       content: ':'
@@ -35,3 +38,38 @@
       text-decoration: none
       color: #ffffff
       background: $orange-color
+
+
+.customer-admin
+  padding-bottom: 15px
+  margin-bottom: 5px
+  border-bottom: 1px solid $dark-grey
+
+  &__button
+    padding: 5px 10px
+
+.product-form
+
+  &__submit-outer
+    display: flex
+    justify-content: center
+    width: 100%
+
+  &__submit
+    width: 300px
+    margin-top: 30px
+
+.products-table
+  width: 100%
+
+  &__cell
+    padding: 5px
+
+  &__row
+    border-bottom: 1px solid $light-grey
+    
+  &__edit
+    width: 0
+
+  &__button
+    width: 100%

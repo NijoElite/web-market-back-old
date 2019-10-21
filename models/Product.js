@@ -8,6 +8,12 @@ const productSchema = new mongoose.Schema({
     unique: true,
   },
 
+  owner: {
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: 'User',
+    required: true,
+  },
+
   name: {
     type: String,
     required: [true, 'can\t be blank'],

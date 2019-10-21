@@ -1,0 +1,28 @@
+extends ./layout
+
+block page
+  .row
+    .col-12
+      .page-block
+        .page__header Добавление нового товара
+        form.product-form(action='/cabinet/customer/product', method='POST')
+          .user-page__info
+            .user-page__info-key Название
+            input.user-page__info-value(type='text', name='name', placeholder='Game Of The Year')
+          .user-page__info
+            .user-page__info-key Цена
+            input.user-page__info-value(type='number', name='price' placeholder='150')
+          .user-page__info
+            .user-page__info-key Издатель
+            input.user-page__info-value(type='text', name='publisher' placeholder='Company LTD')
+          .user-page__info
+            .user-page__info-key Дата выхода (дд.мм.гггг)
+            input.user-page__info-value(type='text', name='releaseDate' placeholder='dd.mm.yyyy')
+          .user-page__info
+            .user-page__info-key Жанры (через запятую)
+            input.user-page__info-value(type='text', name='genres-list' placeholder='Action, RPG')
+          .user-page__info
+            .user-page__info-key.user-page__info-key--top Описание
+            textarea.user-page__info-value(name="description", cols="30", rows="5")
+          .product-form__submit-outer
+            input.product-form__submit.button(type="submit", value='Добавить')
