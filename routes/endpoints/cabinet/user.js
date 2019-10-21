@@ -6,6 +6,24 @@ router.get('/', function(req, res, next) {
   res.render('pages/cabinet/user');
 });
 
+router.post('/info', async function(req, res, next) {
+  const user = req.user;
+  user.firstName = req.body.firstName;
+  user.secondName = req.body.secondName;
+  user.lastName = req.body.lastName;
+
+  try {
+    await user.save();
+    return res.render('pages/cabinet/user', {message:
+      {text: 'Ваши данные изменены', type: 'success'}});
+  } catch (e) {
+    if (e.name === 'ValidationError') {
+      return res.render('pages/cabinet/user', {message:
+        {text: 'Проверьте введенные поля', type: 'error'}});
+    }
+    next(e);
+  }
+});
 
 router.post('/password', async function(req, res, next) {
   const user = req.user;
