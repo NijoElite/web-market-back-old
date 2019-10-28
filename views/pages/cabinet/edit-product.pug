@@ -1,0 +1,30 @@
+extends ./layout
+
+block page
+  .row
+    .col-12
+      .page-block
+        .page__header=actionTitle
+        form.product-form(action='/cabinet/customer/product', method='POST')
+          .user-page__info
+            .user-page__info-key Название
+            input.user-page__info-value(type='text', name='name', placeholder='Game Of The Year', value=product.name)
+          .user-page__info
+            .user-page__info-key Цена
+            input.user-page__info-value(type='number', name='price' placeholder='150', value=product.price)
+          .user-page__info
+            .user-page__info-key Издатель
+            input.user-page__info-value(type='text', name='publisher' placeholder='Company LTD', value=product.publisher)
+          .user-page__info
+            .user-page__info-key Дата выхода (YYYY-DD-MM)
+            input.user-page__info-value(type='text', name='releaseDate' placeholder='YYYY-DD-MM', value=moment(product.releaseDate).format('YYYY-DD-MM'))
+          .user-page__info
+            .user-page__info-key Жанры (через запятую)
+            -const genres = product.genres ? product.genres.join() : '';
+            input.user-page__info-value(type='text', name='genres-list' placeholder='Action, RPG', value=genres)
+          .user-page__info
+            .user-page__info-key.user-page__info-key--top Описание
+            textarea.user-page__info-value(name="description", cols="30", rows="5")=product.description
+          .product-form__submit-outer
+            input(type="hidden", name="article", value=product.article)
+            input.product-form__submit.button(type="submit", value='Добавить')
