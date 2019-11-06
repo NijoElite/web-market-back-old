@@ -58,6 +58,10 @@ const userSchema = new mongoose.Schema({
 
   history: String, // string?
 
+  isDeleted: {
+    type: Boolean,
+    default: false,
+  },
 }, {timestamps: true});
 
 userSchema.plugin(uniqueValidator, {message: 'is already taken'});
