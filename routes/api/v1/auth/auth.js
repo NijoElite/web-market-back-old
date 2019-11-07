@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 
 const User = mongoose.model('User');
 
-// Register New User
+// Generate JWT
 router.post('/login', async function(req, res, next) {
   const {email, password} = req.body;
 
@@ -20,7 +20,7 @@ router.post('/login', async function(req, res, next) {
       });
     }
 
-    const payload = user._id;
+    const payload = {id: user._id.toString()};
     const token = jwt.sign(payload, process.env.SECRET, {
       expiresIn: '6h',
     });
